@@ -40,7 +40,7 @@ public class CustomerService {
         if (StringUtils.isNotBlank(request.email()))
             customer.setEmail(request.email());
         if (request.adress() != null)
-            customer.setAdress(request.adress());
+            customer.setAddress(request.adress());
     }
 
     public List<CustomerResponse> findAllCustomers() {
