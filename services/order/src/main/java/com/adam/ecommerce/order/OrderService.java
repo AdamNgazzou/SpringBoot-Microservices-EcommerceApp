@@ -6,6 +6,8 @@ import com.adam.ecommerce.kafka.OrderConfirmation;
 import com.adam.ecommerce.kafka.OrderProducer;
 import com.adam.ecommerce.orderline.OrderLineRequest;
 import com.adam.ecommerce.orderline.OrderLineService;
+import com.adam.ecommerce.payment.PaymentClient;
+import com.adam.ecommerce.payment.PaymentRequest;
 import com.adam.ecommerce.product.ProductClient;
 import com.adam.ecommerce.product.PurchaseRequest;
 import jakarta.persistence.EntityNotFoundException;
@@ -29,7 +31,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final OrderLineService orderLineService;
     private final OrderProducer orderProducer;
-
+    private final PaymentClient paymentClient;
 
     public Integer createdOrder(@Valid OrderRequest request) {
         // check the customer --> OpenFeign
@@ -52,7 +54,15 @@ public class OrderService {
                     )
             );
         }
-        // todo start payment process
+        //  payment process
+        var paymentRequest = new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+        paymentClient.requestOrderPayment(paymentRequest);
 
         // send the order confirmation --> notification-ms (kafka)
         orderProducer.sendOrderConfirmation(
