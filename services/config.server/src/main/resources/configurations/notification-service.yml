@@ -3,7 +3,7 @@ spring:
     mongodb:
       username: adam
       password: password
-      host: localhost;
+      host: localhost
       port: 27017
       database: customer
       authentication-database: admin
@@ -13,11 +13,11 @@ spring:
       bootstrap-servers: localhost:9092
       group-id: paymentGroup,orderGroup
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: '*'
-        spring.json.type.mapping: orderConfirmation:com.adam.ecommerce.kafka.OrderConfirmation,paymentConfirmation:com.adam.ecommerce.notification.PaymentNotificationRequest
+        spring.json.type.mapping: orderConfirmation:com.adam.ecommerce.kafka.order.OrderConfirmation,paymentConfirmation:com.adam.ecommerce.kafka.payment.PaymentConfirmation
 
   mail:
     host: localhost
@@ -31,8 +31,8 @@ spring:
         auth: true
         starttls:
           enabled: true
-        connectiontimeout: 5000
+        connection timeout: 5000
         timeout: 3000
-        writetimeout: 5000
+        write timeout: 5000
 server:
   port: 8040
