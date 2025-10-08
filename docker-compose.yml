@@ -37,6 +37,8 @@ services:
       - "27017:27017"
     networks:
       - microservices-net
+    volumes:
+      - mongo:/data
     environment:
       - MONGO_INITDB_ROOT_USERNAME=adam
       - MONGO_INITDB_ROOT_PASSWORD=password
