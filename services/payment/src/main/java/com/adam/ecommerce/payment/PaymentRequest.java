@@ -1,13 +1,13 @@
 package com.adam.ecommerce.payment;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
 public record PaymentRequest(
-        Integer id ,
-        BigDecimal amount,
-        PaymentMethod paymentMethod,
-        Integer orderId,
-        String orderReference,
-        Customer customer
-) {
-}
+    @NotNull Integer id,
+    @NotNull BigDecimal amount,
+    @NotNull PaymentMethod paymentMethod,
+    @NotNull Integer orderId,
+    @NotNull String orderReference,
+    @NotNull Customer customer
+) {}
