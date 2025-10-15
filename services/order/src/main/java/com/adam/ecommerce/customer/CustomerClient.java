@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 )
 public interface CustomerClient {
 
-    @GetMapping("/{customer-id}")
+    @GetMapping("/exists/{customer-id}")
     Optional<CustomerResponse> findCustomerById(@PathVariable("customer-id") String customerId);
 
 

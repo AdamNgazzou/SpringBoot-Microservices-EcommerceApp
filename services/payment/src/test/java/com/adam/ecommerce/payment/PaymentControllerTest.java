@@ -41,7 +41,7 @@ class PaymentControllerTest {
                 2, // orderId
                 "Test payment", // description
                 new Customer(
-                    1,                // id as String
+                    "1",                // id as String
                     "John",             // firstName
                     "Doe",              // lastName
                     "john@example.com"// email
@@ -67,7 +67,7 @@ class PaymentControllerTest {
                 2,
                 "Test payment",
                 new Customer(
-                        1,                // id as String
+                        "1",                // id as String
                         "John",             // firstName
                         "Doe",              // lastName
                         "john@example.com"// email
@@ -90,7 +90,7 @@ class PaymentControllerTest {
                 2,
                 "Test payment",
                 new Customer(
-                    1,                // id as String
+                    "1",                // id as String
                     "John",             // firstName
                     "Doe",              // lastName
                     "john@example.com"// email

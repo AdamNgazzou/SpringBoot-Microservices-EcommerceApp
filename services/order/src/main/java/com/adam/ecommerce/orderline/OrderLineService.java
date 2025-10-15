@@ -1,6 +1,8 @@
 package com.adam.ecommerce.orderline;
 
+import com.adam.ecommerce.order.Order;
 import com.adam.ecommerce.order.OrderService;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,15 @@ public class OrderLineService {
 
         private final OrderLineRepository repository ;
         private final OrderLineMapper mapper;
+        private final EntityManager entityManager;
+
         public Integer saveOrderLine(OrderLineRequest request) {
-            var order = mapper.toOrderLine(request);
-            return repository.save(order).getId();
+            var orderLine = mapper.toOrderLine(request);
+
+            Order orderRef = entityManager.getReference(Order.class, request.orderId());
+            orderLine.setOrder(orderRef);
+
+            return repository.save(orderLine).getId();
         }
 
     public List<OrderLineResponse> findAllBydOrderId(Integer orderId) {
@@ -25,4 +33,5 @@ public class OrderLineService {
                 .collect(Collectors.toList())
                 ;
     }
+    
 }

@@ -1,12 +1,8 @@
 spring:
   data:
     mongodb:
-      username: adam
-      password: password
-      host: localhost
-      port: 27017
-      database: customer
-      authentication-database: admin
+      uri: mongodb+srv://adam:password123.@ecommerce.vlcvckq.mongodb.net/customer?retryWrites=true&w=majority&appName=ecommerce
+
 
   kafka:
     consumer:
