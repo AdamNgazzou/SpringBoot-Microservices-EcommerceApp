@@ -21,8 +21,8 @@
         <module name="notification" />
         <module name="product" />
         <module name="payment" />
-        <module name="order" />
         <module name="customer" />
+        <module name="order" />
       </profile>
     </annotationProcessing>
   </component>

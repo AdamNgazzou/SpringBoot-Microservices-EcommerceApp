@@ -1,0 +1,10 @@
+frontend/
+# HTTP request / REST client files
+*.http
+*.rest
+*.har
+*.postman_collection.json
+*.postman_environment.json
+.postman*
+.vscode/http-
+.idea/
